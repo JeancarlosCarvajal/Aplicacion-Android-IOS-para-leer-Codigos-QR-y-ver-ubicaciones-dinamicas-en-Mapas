@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class UiProvider extends ChangeNotifier { // UiProvider extendemos de changeNotifier del paquete de material para que se tenga acceso a esata herramienta y notificar cambios en el valor de _selectedMenuOpt
   
   // se cambiara de manera condicional mendiante getters and setters, es privada con guion bajo
-  int _selectedMenuOpt = 0;
+  int _selectedMenuOpt = 1;
 
   int get selectedMenuOpt {
     return this._selectedMenuOpt; // recuerda el this es opcional lo coloque como referencia
