@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'; 
 import 'package:qr_reader/pages/home_page.dart';
 import 'package:qr_reader/pages/mapa_page.dart';
+import 'package:qr_reader/theme/app_theme.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,25 +16,7 @@ class MyApp extends StatelessWidget {
         'home': ( _ ) => HomePage(),
         'mapa': ( _ ) => MapaPage(),
       },
-      theme: ThemeData.light().copyWith(
-        primaryColor: Colors.deepPurple,
-        appBarTheme: const AppBarTheme(
-            color: Colors.deepPurple,
-            elevation: 0
-        ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.deepPurple,
-          elevation: 5
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedIconTheme: IconThemeData(color: Colors.deepPurple),
-          unselectedIconTheme: IconThemeData(color: Colors.black54),
-          selectedLabelStyle: TextStyle(color: Colors.deepPurple),
-          unselectedLabelStyle:  TextStyle(color: Colors.black54),
-          selectedItemColor: Colors.deepPurple,
-          unselectedItemColor: Colors.black54,
-        ),
-      ),
+      theme: AppTheme.lightTheme,
     );
   }
 }
