@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
 
-
-  static const Color activeLight = Colors.deepPurple;
+  static const String activeLightQR= '#673AB7';
+  static const Color activeLight = Color(0xFF673AB7);
   static const Color unactiveLight = Colors.black54;
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
