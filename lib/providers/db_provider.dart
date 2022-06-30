@@ -5,6 +5,7 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart'; // para poder usar el join()
 
 class DBProvider {
@@ -32,7 +33,7 @@ class DBProvider {
     // se importo dart:io con el Directory. y getApplicationDocumentsDirectory() es proveniente de la instalacion del paquete pathprovider instalado anterirmente
     // getApplicationDocumentsDirectory detecta automaticamente la ubicacion de la base de datos en el telefono
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-
+    print(documentsDirectory.path);
     // creando el path de la base de datos usando los paquetes instalados y los ya disponibles
     final path = join( documentsDirectory.path, 'ScansDB.db' ); // importar paquete 'package:path/path.dart' para usar join(), permite unir URLs
     print(path);
@@ -52,8 +53,6 @@ class DBProvider {
           );
         ''');
       },
-
-
     );
   }
 
