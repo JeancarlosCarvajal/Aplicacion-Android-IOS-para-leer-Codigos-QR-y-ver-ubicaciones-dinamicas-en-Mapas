@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
 import 'package:qr_reader/pages/mapas_page.dart';
+import 'package:qr_reader/providers/db_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
 import 'package:qr_reader/widgets/scan_buttom.dart';
@@ -47,6 +48,9 @@ class _HomePageBody extends StatelessWidget {
     // Cambiar para mostrar la pagina respectiva
     // para mantener centralizado este valor se usa GESTOR de ESTADOS, Provider es el mas papolar
     final currentIndex  = uiProvider.selectedMenuOpt; // selectedMenuOpt es el getter que creamos en la clase UiProvider
+
+    // TODO: temporal leer base de datos
+    DBProvider.db.database;
     
     switch( currentIndex ) {
       case 0:
