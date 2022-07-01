@@ -6,19 +6,21 @@ import 'dart:convert';
 
 class ScanModel {
     ScanModel({
-      required this.id,
-      required this.tipo,
+      this.id,
+      this.tipo,
       required this.valor,
     }){
-      if(tipo.contains('http')){
-        tipo = 'http';
-      }else{
-        tipo = 'geo';
+      if(valor.isEmpty){
+        if(valor.contains('http')){
+          tipo = 'http';
+        }else{
+          tipo = 'geo';
+        }
       }
     }
 
-    int id;
-    String tipo;
+    int? id;
+    String? tipo;
     String valor;
  
     factory ScanModel.fromJson(String str) => ScanModel.fromMap(json.decode(str));

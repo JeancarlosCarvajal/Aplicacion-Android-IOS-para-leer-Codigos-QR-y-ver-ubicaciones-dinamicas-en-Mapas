@@ -49,9 +49,39 @@ class _HomePageBody extends StatelessWidget {
     // para mantener centralizado este valor se usa GESTOR de ESTADOS, Provider es el mas papolar
     final currentIndex  = uiProvider.selectedMenuOpt; // selectedMenuOpt es el getter que creamos en la clase UiProvider
 
-    // TODO: temporal leer base de datos
-    DBProvider.db.database;
-    
+    // TODO: INICIO temporal Interactuar y Leer base de datos
+    // con esto probamos la creacion de la base de datos
+    // DBProvider.db.database;
+
+    // con esto probamos la insercion de datos en la base de datos
+      // creamos los datos temporales
+    // final tempScan = new ScanModel(valor: 'https://nftlatinoamerica.com/'); // el new es opcional
+    // print(tempScan);
+      // accionames el metodo nuevoScan para insertarlo en la base de datos
+    // DBProvider.db.nuevoScan(tempScan); 
+
+    // Seleccionar datos de la base de datos
+    // DBProvider.db.getScanById(3); // una forma de verlo 
+    // DBProvider.db.getScanById(3).then((scan) => print(scan!.valor)); // otra forma de verlo por valores individuales getTodosLosScans
+
+    // ver todos los scans getTodosLosScans, agrege .toString() para ver los datos y que no me aparezca "instancia de...."
+    // DBProvider.db.getTodosLosScans().then((scan) => print(scan.toString())); // otra forma de verlo por valores individuales 
+
+    // ver los scans getScansPorTipo
+    // DBProvider.db.getScansPorTipo('https').then((scan) => print(scan)); // otra forma de verlo por valores individuales 
+
+    // Actualizar los scans updateScan
+    // final tempUpdteScan = ScanModel(valor: 'https://nftlatinoamerica.com/44', id: 4, tipo: 'https'); // el new es opcional
+    // DBProvider.db.updateScan(tempUpdteScan).then((scan) => print(scan)); // otra forma de verlo por valores individuales    
+
+    // Borrar datos de la base de datos por Id
+    // DBProvider.db.deleteScan(4).then((scan) => print(scan)); // otra forma de verlo por valores individuales   
+
+    // Borrar datos de la base de datos por Id
+    // DBProvider.db.deleteAllScans().then((scan) => print(scan)); // otra forma de verlo por valores individuales
+    // TODO: FIN temporal Interactuar y Leer base de datos
+
+
     switch( currentIndex ) {
       case 0:
         return MapasPage();
