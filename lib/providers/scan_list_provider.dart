@@ -68,7 +68,7 @@ class ScanListProvider extends ChangeNotifier {
     // Borramos el scans de la base de datos
     await DBProvider.db.deleteScan(id);
     // vuelvo a llamar el metodo para llenar los tipos sin el id que borre
-    this.cargarScansPorTipo(this.tipoSeleccionado);
+    // this.cargarScansPorTipo(this.tipoSeleccionado); // lo comente porque el widget Dismissible usado en las pages me elimina la lista moviendolas a los lados y no necesito redibujar el canvas
   }
 
 }
