@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 // import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 // import 'package:qr_reader/theme/app_theme.dart';
 
@@ -15,6 +17,11 @@ class ScanButtom extends StatelessWidget {
 
         // String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(AppTheme.activeLightQR, 'Cancelar', false, ScanMode.QR);
         const barcodeScanRes = 'https://nftlatinoamerica.com/';
+        // para obtener los datos en el arbol de widgets
+        final scanListProvider = Provider.of<ScanListProvider>(context, listen: false); // listen false pa que no se redibuje no lo necesitamos
+        // Accedemos a los metodos del scanListProvider para introducir el barcodeScanRes obtenido del lector dentro de la base de datos
+        scanListProvider.nuevoScan(barcodeScanRes);
+        scanListProvider.nuevoScan('geo:15.33,15.66');
         print('Respuesta del QR: $barcodeScanRes');
 
       }    

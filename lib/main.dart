@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; 
 import 'package:qr_reader/pages/home_page.dart';
 import 'package:qr_reader/pages/mapa_page.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/theme/app_theme.dart';
 
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
       providers: [ // el multiprovider necesita varios proveedores de informmacion
         // En nuestro arbol de Widget ahora vamos a tener una instancia llamada UiProvider que usaremos a requerimiento
         ChangeNotifierProvider(create: ( _ ) => new UiProvider()),// Agrega el notify provider que creamos para que sea escuchado
+        // En nuestro arbol de Widget ahora vamos a tener una instancia llamada ScanListProvider que usaremos para axeder a los datos y hacer notifierlistener
+        ChangeNotifierProvider(create: ( _ ) => new ScanListProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

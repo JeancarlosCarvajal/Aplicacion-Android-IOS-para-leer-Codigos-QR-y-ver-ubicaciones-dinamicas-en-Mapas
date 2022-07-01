@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
 import 'package:qr_reader/pages/mapas_page.dart';
-import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart'; 
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
 import 'package:qr_reader/widgets/scan_buttom.dart';
@@ -12,14 +12,17 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Historial')),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: (){}
+            onPressed: (){
+              Provider.of<ScanListProvider>(context, listen: false).borrarTodos();
+            }
           ),
         ],
       ),
@@ -81,13 +84,19 @@ class _HomePageBody extends StatelessWidget {
     // DBProvider.db.deleteAllScans().then((scan) => print(scan)); // otra forma de verlo por valores individuales
     // TODO: FIN temporal Interactuar y Leer base de datos
 
+    // Accedemos a los metodos que nos proporciona el Provider
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false); // listen false pa que no se redibuje no lo necesitamos
 
     switch( currentIndex ) {
       case 0:
+        // Carga los datos desde la base de datos del telefono en el array scans y tenerlos listo para ser usado
+        scanListProvider.cargarScansPorTipo('geo');
         return MapasPage();
       case 1:
+        scanListProvider.cargarScansPorTipo('http');
         return DireccionesPage();
       default:
+        scanListProvider.cargarScansPorTipo('geo');
         return MapasPage(); 
     }
   }
