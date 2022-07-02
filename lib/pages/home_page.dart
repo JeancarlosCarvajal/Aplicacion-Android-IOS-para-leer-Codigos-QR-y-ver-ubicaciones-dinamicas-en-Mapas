@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:qr_reader/pages/direcciones_page.dart';
 import 'package:qr_reader/pages/mapas_page.dart';
+
 import 'package:qr_reader/providers/scan_list_provider.dart'; 
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
@@ -96,8 +98,7 @@ class _HomePageBody extends StatelessWidget {
       case 1:
         scanListProvider.cargarScansPorTipo('http');
         return const ScanTiles(icon: Icons.home_outlined); // era DireccionesPage()
-      default:
-        scanListProvider.cargarScansPorTipo('geo');
+      default: 
         return const ScanTiles(icon: Icons.map_outlined); // era  MapasPage();
     }
   }

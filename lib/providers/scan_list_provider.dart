@@ -34,13 +34,11 @@ class ScanListProvider extends ChangeNotifier {
       // insertar el nuevo scan al listado de scan creado arriiba llamado scans
       this.scans.add(nuevoScan); // usamos el add para insertar otro elemento en el array
       // ahora notificamos a cualquier widget o agente usuario que hay un cambio en los scans
-      // notifyListeners(); // este metodo es propio del Provider
-    }else{
-      print('NO son iguales');
-    }
+      notifyListeners(); // este metodo es propio del Provider
+    } 
 
     // tipoSeleccionado = nuevoScan.tipo!;
-    cargarScansPorTipo( nuevoScan.tipo! );
+    // cargarScansPorTipo( nuevoScan.tipo! );
     return nuevoScan;
 
   }

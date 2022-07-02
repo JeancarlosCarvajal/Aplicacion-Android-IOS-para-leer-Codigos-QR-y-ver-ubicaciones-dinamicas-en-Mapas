@@ -1,7 +1,7 @@
 import 'dart:async'; // para poder usar el Completer
 
 import 'package:flutter/material.dart';
-// import 'package:qr_reader/models/scan_model.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart'; // del paquete de google maps 
 
 import 'package:qr_reader/providers/db_provider.dart';
