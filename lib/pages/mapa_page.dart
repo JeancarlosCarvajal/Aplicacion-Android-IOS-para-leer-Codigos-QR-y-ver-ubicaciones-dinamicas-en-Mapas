@@ -16,13 +16,13 @@ class MapaPage extends StatefulWidget {
 
 class _MapaPageState extends State<MapaPage> {
 
-  static const CameraPosition puntoInicial = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
   // sirve para trabar con el hasta que tengamos el google maps
+  // GoogleMapController controla la camara tipos de vista etc, crear polilines y muchas cosas mas
   final Completer<GoogleMapController> _controller = Completer(); // paquete para el Completer 'dart:async'
-   
+
+  // para modificarlo abajo ya que estamos en un satatefullwidget
+  MapType mapType = MapType.normal;
+
   @override
   Widget build(BuildContext context) {
 
@@ -30,17 +30,69 @@ class _MapaPageState extends State<MapaPage> {
     final ScanModel? scan = ModalRoute.of(context)!.settings.arguments as ScanModel?; 
     // tuve que agregar  as ScanModel? porque no me leia el tipo de formato, me decia que era objeto
     
+    final CameraPosition puntoInicial = CameraPosition(
+      target: scan!.getLatLng(),
+      zoom: 17.5,
+      tilt: 50, // para que se vea en 3d inclinado
+    );
+
+    // Marcadores documentacion por google
+    Set<Marker> markers = new Set<Marker>();
+    markers.add(
+      Marker(
+        markerId: const MarkerId('Geo Location'),
+        position: scan.getLatLng()      
+      )
+    );
+
+    Future<void> _goToTheLake() async {
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(puntoInicial));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text('Mapa')),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.location_disabled),
+            onPressed: () async {
+              GoogleMapController controller = await _controller.future;
+              controller.animateCamera(CameraUpdate.newCameraPosition(puntoInicial));
+            }, 
+          )
+        ],
       ),
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: mapType, // tenia MapType.normal y movi arriba como variable para poder modiviar las capas del mapa
         initialCameraPosition: puntoInicial,
+        markers: markers,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
-        },
+        }, 
       ),
+      floatingActionButton: Container(
+        alignment: Alignment.bottomCenter,
+        child: FloatingActionButton(
+          child: const Icon(Icons.layers),
+          onPressed: () {
+            if(mapType == MapType.normal){
+              mapType = MapType.satellite;
+            }else{
+              mapType = MapType.normal; 
+            }
+            // setState se usa para redibujar en un statefulwidget
+            setState(() {});
+        },),
+      ),
+      // floatingActionButton: Container(
+      //   alignment: Alignment.bottomCenter,
+      //   child: FloatingActionButton.extended(
+      //     onPressed: _goToTheLake,
+      //     label: const Icon(Icons.home_filled),
+      //     // icon: Icon(Icons.home_filled),
+      //   ),
+      // ),
     );
   }
 }

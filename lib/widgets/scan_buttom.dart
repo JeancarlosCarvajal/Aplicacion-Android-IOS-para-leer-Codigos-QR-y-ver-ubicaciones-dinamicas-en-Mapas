@@ -3,9 +3,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/theme/app_theme.dart';
-import 'package:qr_reader/utils/utils.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:qr_reader/theme/app_theme.dart';
+import 'package:qr_reader/utils/utils.dart';  
 
 class ScanButtom extends StatelessWidget {
    
@@ -18,9 +16,9 @@ class ScanButtom extends StatelessWidget {
       child: const Icon(Icons.filter_center_focus),
       onPressed: () async {
 
-        // String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(AppTheme.activeLightQR, 'Cancelar', false, ScanMode.QR);
+        String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(AppTheme.activeLightQR, 'Cancelar', false, ScanMode.QR);
         // const barcodeScanRes = 'https://nftlatinoamerica.com/'; // 10.1920459,-64.6836107
-        const barcodeScanRes = 'geo:10.1920459,-64.6836107'; // 10.1920459,-64.6836107
+        // const barcodeScanRes = 'geo:10.1920459,-64.6836107'; // 10.1920459,-64.6836107
 
         if(barcodeScanRes == '-1') {
           return;
@@ -33,7 +31,7 @@ class ScanButtom extends StatelessWidget {
         launcherUrl(context, nuevoScan);
         
         print('Respuesta del QR: $barcodeScanRes');
-
+        
       }    
     );
   }
