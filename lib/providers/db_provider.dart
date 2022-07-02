@@ -4,8 +4,7 @@
 
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
-// ignore: depend_on_referenced_packages
+import 'package:sqflite/sqflite.dart'; 
 import 'package:path/path.dart'; // para poder usar el join()
 import 'package:qr_reader/models/scan_model.dart';
 export 'package:qr_reader/models/scan_model.dart'; // para cuando se use este db_provider.dart de una vez se incluya scan_model.dart la exporto
@@ -20,7 +19,7 @@ class DBProvider {
   DBProvider._(); // de esta manera puedo acceder de esta forma DBProvider.db.database;
 
   // acceder el objeto del _database
-  Future<Database?> get database async {// async es porque la base de datos toma timepo en responder 
+  Future<Database?> get database async { // async es porque la base de datos toma timepo en responder 
     if(_database != null) return _database;
 
     // regresa la base de datos
@@ -38,7 +37,7 @@ class DBProvider {
     // print(documentsDirectory.path);
     // creando el path de la base de datos usando los paquetes instalados y los ya disponibles
     final path = join( documentsDirectory.path, 'ScansDB.db' ); // importar paquete 'package:path/path.dart' para usar join(), permite unir URLs
-    print(path);
+    // print(path);
 
     //Creacion de la base de datos
     return await openDatabase(
@@ -82,6 +81,7 @@ class DBProvider {
 
     // verificar la base de datos, crear este final se activa el getter y crea la base de datos en caso que no se haya creado
     final db = await database;
+    print('Desde base de datos creando nuevo tipo: ${nuevoScan.tipo}');
     // inserta los valor desde formato json en la base de datos
     final res = await db!.insert('Scans', nuevoScan.toMap());
     // retorna el id insertado en la base de datos

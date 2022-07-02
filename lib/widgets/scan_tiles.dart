@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/theme/app_theme.dart';
+import 'package:qr_reader/utils/utils.dart';
 
 class ScanTiles extends StatelessWidget {
 
@@ -15,7 +16,7 @@ class ScanTiles extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // una pista cuando estemo dentro de un build se coloca el Listen y en lo metodos (funciones) no se coloca
-    final scanListProvider = Provider.of<ScanListProvider>(context); // Aqui necesito volver a redibujar el canvas
+    final scanListProvider = Provider.of<ScanListProvider>(context); // Aqui necesito volver a redibujar el canvas para cuando se inserte un nuevo scan 
     final scans = scanListProvider.scans;
 
     return ListView.builder(
@@ -25,13 +26,16 @@ class ScanTiles extends StatelessWidget {
         background: Container(
           color: AppTheme.unactiveLight,
         ),
-        onDismissed: (DismissDirection direction) => Provider.of<ScanListProvider>(context, listen: false).borrarScanPorId(scans[i].id!), // evento que se utiliza cuando se hace eliminacion al arrastrar el elemento a los lados
+        onDismissed: (DismissDirection direction) { 
+            Provider.of<ScanListProvider>(context, listen: false)
+              .borrarScanPorId(scans[i].id!); 
+          }, // evento que se utiliza cuando se hace eliminacion al arrastrar el elemento a los lados
         child: ListTile(
           leading: Icon(icon, color: AppTheme.activeLight),
           title: Text(scans[i].valor),
           subtitle: Text(scans[i].id.toString()),
           trailing: const Icon(Icons.keyboard_arrow_right, color: AppTheme.unactiveLight),
-          onTap: () => print('Valores de ID: ${scans[i].id}'), // evento al hacer click en la lista  
+          onTap: () => launcherUrl(context, scans[i]), // evento al hacer click en la lista  
         ),
       ), 
     );

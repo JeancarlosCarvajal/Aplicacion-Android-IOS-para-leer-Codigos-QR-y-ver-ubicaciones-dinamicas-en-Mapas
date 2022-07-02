@@ -14,7 +14,7 @@ class ScanListProvider extends ChangeNotifier {
   String tipoSeleccionado = 'http';
 
   // creamos los metodos necesario
-  nuevoScan(String valor) async {
+  Future<ScanModel> nuevoScan(String valor) async {
 
     // creamos la instancia del nuevo scan
     final nuevoScan = new ScanModel(valor: valor);
@@ -25,15 +25,23 @@ class ScanListProvider extends ChangeNotifier {
     // Asignar el Id de la Base de datos al Modelo
     nuevoScan.id = id;
 
+    // print(nuevoScan.tipo);
+
     // esto aplica solo para los links de las direcicones de las paginas que usan http para ser mostradas en el screen de direcciones
     // si no hago esto me va mostrar los datos en geolocation tambien y no lo quiero alli 
     if(this.tipoSeleccionado == nuevoScan.tipo){ 
+      print('Son igules');
       // insertar el nuevo scan al listado de scan creado arriiba llamado scans
       this.scans.add(nuevoScan); // usamos el add para insertar otro elemento en el array
-
       // ahora notificamos a cualquier widget o agente usuario que hay un cambio en los scans
-      notifyListeners(); // este metodo es propio del Provider
-    } 
+      // notifyListeners(); // este metodo es propio del Provider
+    }else{
+      print('NO son iguales');
+    }
+
+    // tipoSeleccionado = nuevoScan.tipo!;
+    cargarScansPorTipo( nuevoScan.tipo! );
+    return nuevoScan;
 
   }
 

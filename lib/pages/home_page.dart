@@ -6,6 +6,7 @@ import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/widgets/custom_navigatorbar.dart';
 import 'package:qr_reader/widgets/scan_buttom.dart';
+import 'package:qr_reader/widgets/scan_tiles.dart';
 
 class HomePage extends StatelessWidget {
    
@@ -91,13 +92,13 @@ class _HomePageBody extends StatelessWidget {
       case 0:
         // Carga los datos desde la base de datos del telefono en el array scans y tenerlos listo para ser usado
         scanListProvider.cargarScansPorTipo('geo');
-        return MapasPage();
+        return const ScanTiles(icon: Icons.map_outlined); // era  MapasPage();
       case 1:
         scanListProvider.cargarScansPorTipo('http');
-        return DireccionesPage();
+        return const ScanTiles(icon: Icons.home_outlined); // era DireccionesPage()
       default:
         scanListProvider.cargarScansPorTipo('geo');
-        return MapasPage(); 
+        return const ScanTiles(icon: Icons.map_outlined); // era  MapasPage();
     }
   }
 }

@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       providers: [ // el multiprovider necesita varios proveedores de informmacion
         // En nuestro arbol de Widget ahora vamos a tener una instancia llamada UiProvider que usaremos a requerimiento
         ChangeNotifierProvider(create: ( _ ) => new UiProvider()),// Agrega el notify provider que creamos para que sea escuchado
-        // En nuestro arbol de Widget ahora vamos a tener una instancia llamada ScanListProvider que usaremos para axeder a los datos y hacer notifierlistener
+        // En nuestro arbol de Widget ahora vamos a tener una instancia llamada ScanListProvider que usaremos para acceder a los datos y hacer notifierlistener
+        // en cualquier widget dentro de MultiProvider lo cual seria toda nuestra aplicacion porque esta a un nivel muy alto
         ChangeNotifierProvider(create: ( _ ) => new ScanListProvider()),
       ],
       child: MaterialApp(

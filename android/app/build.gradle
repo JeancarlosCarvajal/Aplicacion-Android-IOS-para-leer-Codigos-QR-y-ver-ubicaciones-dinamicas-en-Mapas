@@ -74,7 +74,7 @@ dependencies {
 // https://developer.android.com/studio/build/multidex#kts
 android {
     defaultConfig { 
-        minSdk = 16
+        minSdk = 20
         targetSdk = 28
         multiDexEnabled = true
     } 

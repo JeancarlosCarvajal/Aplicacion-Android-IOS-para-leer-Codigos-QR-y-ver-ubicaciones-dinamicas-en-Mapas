@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart'; 
-import 'package:qr_reader/widgets/scan_tiles.dart';
+// import 'package:flutter/material.dart'; 
+// import 'package:qr_reader/widgets/scan_tiles.dart';
 
-class DireccionesPage extends StatelessWidget {
+// class DireccionesPage extends StatelessWidget {
    
-  const DireccionesPage({Key? key}) : super(key: key);
+//   const DireccionesPage({Key? key}) : super(key: key);
   
-  @override
-  Widget build(BuildContext context) {  
-    return const ScanTiles(icon: Icons.home_outlined);;
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {  
+//     return const ScanTiles(icon: Icons.home_outlined);
+//   }
+// }
