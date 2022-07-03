@@ -45,18 +45,18 @@ class ScanListProvider extends ChangeNotifier {
 
   cargarScans() async {
     // obtenermos todos los scans de la base de datos
-    final scans_new = await DBProvider.db.getTodosLosScans();
+    final scansNew = await DBProvider.db.getTodosLosScans();
     // igualo el scans creado arriba a los datos de la base de datos
-    this.scans = [...scans_new!];
+    this.scans = [...scansNew!];
     // notifico a todo aquel widget insteresado en el cambio
     notifyListeners();
   }
 
   cargarScansPorTipo( String tipo ) async {
     // obtenermos todos los scans de la base de datos
-    final scans_new = await DBProvider.db.getScansPorTipo(tipo);
+    final scansNew = await DBProvider.db.getScansPorTipo(tipo);
     // igualo el scans creado arriba a los datos de la base de datos por tipo
-    this.scans = [...scans_new!];
+    this.scans = [...scansNew!];
     // notifico a todo aquel widget insteresado en el cambio
     notifyListeners();
   }

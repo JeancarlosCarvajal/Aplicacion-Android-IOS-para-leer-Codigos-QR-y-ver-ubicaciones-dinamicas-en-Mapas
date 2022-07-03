@@ -29,9 +29,9 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: _HomePageBody(),
-      bottomNavigationBar: CustomNavigatorBar(),
-      floatingActionButton: ScanButtom(),
+      body: const _HomePageBody(),
+      bottomNavigationBar: const CustomNavigatorBar(),
+      floatingActionButton: const ScanButtom(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
