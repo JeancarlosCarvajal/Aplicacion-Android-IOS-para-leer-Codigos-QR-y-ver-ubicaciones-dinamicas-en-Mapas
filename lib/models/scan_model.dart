@@ -7,15 +7,21 @@ import 'dart:convert';
 import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
 
 class ScanModel {
+  int httpTipo = 0;
     ScanModel({
       this.id,
       this.tipo,
       required this.valor,
     }){
-      if(valor.contains('http')){
-        tipo = 'http';
-      }else{
+      if(valor.contains('geo')){
         tipo = 'geo';
+        if(valor.contains('https')) {
+          httpTipo = 12;
+        } else {
+          httpTipo = 11;
+        }
+      }else{
+        tipo = 'http';
       }
     }
 
@@ -24,7 +30,7 @@ class ScanModel {
     String valor;
 
     LatLng getLatLng(){
-      final latLng = valor.substring(4).split(',');
+      final latLng = valor.substring(httpTipo).split(',');
       final lat = double.parse(latLng[0]); // convuerto el string a un numero
       final lng = double.parse(latLng[1]); // convuerto el string a un numero      
       return LatLng(lat, lng);

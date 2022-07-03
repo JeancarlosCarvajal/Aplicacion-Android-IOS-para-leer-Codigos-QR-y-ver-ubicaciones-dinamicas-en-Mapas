@@ -11,11 +11,13 @@ launcherUrl( BuildContext context, ScanModel scan ) async {
 
   if(scan.tipo == 'http'){
     final String url = scan.valor; // obtenermos el string de la url
+    print('Soy la URL sin Procesar: $url');
     final Uri uri = Uri.parse(url); // tomamos el string y lo convertimos en formato Uri  
+    print('Soy el URI procesaro: $uri');
     // funcion propia del paquete
     if (!await launchUrl(uri) ) throw 'Could not launch $uri';
   }else{
-    // print('Soy Geooo !!!!');
+    print('Soy Geooo !!!!');
     // llamamos la funcion Navigator.pushName() para enviar los datos de donde quiero ir, el context y muy importante los datos de scan que contiene la informacion
     Navigator.pushNamed(context, 'mapa', arguments: scan);
   }
